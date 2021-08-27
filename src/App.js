@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import React, { useState }  from 'react';
 import './App.css';
+import 'h8k-components';
+import NotesApp from './components/index.js';
+
 
 function App() {
+  const [notes, setNotes] = useState ([]);
+  
+  //const [newNotes, setNewNotes] = useState([]);
+ 
+
+
+
+const handleAddNote = ( heading, status) =>{
+  //console.log(heading)
+  const newNote = {
+    id: Math.random(),
+    heading: heading,
+    status: status,
+  }
+  setNotes([newNote, ...notes]);
+  
+}
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NotesApp notes={notes} onEditField={handleAddNote} />
     </div>
   );
 }
